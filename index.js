@@ -34,6 +34,11 @@ async function run() {
             res.send(result)
         })
 
+        app.get('/coffee', async (req, res) => {
+            const result = await coffeeData.find().toArray()
+            res.send(result)
+        })
+
 
         app.get('/', (req, res) => {
             res.send('coffee server is getting warmer')
