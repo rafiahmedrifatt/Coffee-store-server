@@ -26,11 +26,20 @@ async function run() {
     try {
         await client.connect();
         const coffeeData = client.db('coffeeDb').collection('coffee');
+        const userData = client.db('coffeeDb').collection('user');
 
         app.post('/coffee', async (req, res) => {
             const doc = req.body;
             console.log(doc);
             const result = await coffeeData.insertOne(doc);
+            res.send(result)
+        })
+
+        //user data post
+
+        app.post('/user', async (req, res) => {
+            const data = req.body
+            const result = await userData.insertOne(data)
             res.send(result)
         })
 
